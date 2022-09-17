@@ -1,9 +1,9 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "../../pages/Home/Home";
-import NewExpense from "../../pages/Expenses/NewExpense";
-import "../../index.css";
+import { Routes, Route } from 'react-router-dom';
+import Home from '../../pages/Home/Home';
+import NewExpense from '../../pages/Expenses/NewExpense';
+import '../../index.css';
 
-function App() {
+export function App() {
   return (
     <main className="app">
       <Routes>
@@ -13,5 +13,3 @@ function App() {
     </main>
   );
 }
-
-export default App;
