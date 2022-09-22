@@ -5,11 +5,7 @@ export function ExpenseValidation() {
   const expenseSchema = () => {
     return yup.object().shape({
       title: yup.string().required('Required field'),
-      amount: yup
-        .number()
-        .min(0, 'Min value 0.')
-        .max(10, 'Max value 10.')
-        .required('Required field'),
+      amount: yup.number().min(0, 'Min value 0.').required('Required field'),
       category: yup.string().required('Required field'),
     });
   };

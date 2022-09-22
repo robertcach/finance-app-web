@@ -1,4 +1,6 @@
 import { Formik, Form, ErrorMessage, Field } from 'formik';
+import { useCreateExpense } from '../../../../hooks/useCreateExpense';
+import { Expense } from '../../../../interfaces/expense';
 import {
   ExpenseValidation,
   expenseInitialValues,
@@ -6,13 +8,23 @@ import {
 
 export const ExpenseForm = () => {
   const { expenseSchema } = ExpenseValidation();
+  const { fetchExpense } = useCreateExpense();
 
   return (
     <Formik
       initialValues={expenseInitialValues}
       validationSchema={expenseSchema}
-      onSubmit={(values) => {
+      onSubmit={(values: Expense) => {
         console.log(values);
+        if (values) {
+          const expense: Expense = {
+            title: values.title,
+            amount: values.amount,
+            category: values.category,
+          };
+
+          fetchExpense(expense);
+        }
       }}
     >
       <Form>
@@ -21,7 +33,6 @@ export const ExpenseForm = () => {
           <Field name="title" type="text" className="border border-stone-700" />
           <ErrorMessage name="title" />
         </div>
-
         <div>
           <label htmlFor="amount">Amount</label>
           <Field
@@ -31,17 +42,22 @@ export const ExpenseForm = () => {
           />
           <ErrorMessage name="amount" />
         </div>
-
         <div>
           <label htmlFor="category">Category</label>
           <Field
+            as="select"
             name="category"
-            type="text"
             className="border border-stone-700"
-          />
+          >
+            <option disabled value="">
+              Select
+            </option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+          </Field>
           <ErrorMessage name="category" />
         </div>
-
         <button className="bg bg-black text-white p-2" type="submit">
           Submit
         </button>
