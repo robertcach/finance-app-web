@@ -3,8 +3,6 @@ import { API_URL } from '../constants';
 
 export function useCreateExpense() {
   const fetchExpense = async (expense: Expense) => {
-    console.log(typeof expense);
-
     const response = await fetch(`${API_URL}/expense/new`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

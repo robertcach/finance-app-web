@@ -1,39 +1,40 @@
 import { Formik, Form, ErrorMessage, Field } from 'formik';
-import { useCreateExpense } from '../../../../hooks/useCreateExpense';
-import { Expense } from '../../../../interfaces/expense';
 import {
-  ExpenseValidation,
-  expenseInitialValues,
-} from '../../../../schemas/expenseValidation';
+  incomeInitialValues,
+  IncomeValidation,
+} from '../../../schemas/incomeValidation';
+import { Income } from '../../../interfaces/income';
+import { useCreateIncome } from '../../../hooks/useCreateIncome';
 
-export const ExpenseForm = () => {
-  const { expenseSchema } = ExpenseValidation();
-  const { fetchExpense } = useCreateExpense();
+export const IncomeForm = () => {
+  const { incomeSchema } = IncomeValidation();
+  const { fetchIncome } = useCreateIncome();
 
   return (
     <Formik
-      initialValues={expenseInitialValues}
-      validationSchema={expenseSchema}
-      onSubmit={(values: Expense) => {
+      initialValues={incomeInitialValues}
+      validationSchema={incomeSchema}
+      onSubmit={(values: Income) => {
         if (values) {
-          const expense: Expense = {
+          const income: Income = {
             title: values.title,
             amount: values.amount,
             category: values.category,
           };
 
-          fetchExpense(expense);
+          fetchIncome(income);
         }
       }}
     >
       <Form>
         <div>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">Title:</label>
           <Field name="title" type="text" className="border border-stone-700" />
           <ErrorMessage name="title" />
         </div>
+
         <div>
-          <label htmlFor="amount">Amount</label>
+          <label htmlFor="amount">Amount:</label>
           <Field
             name="amount"
             type="number"
@@ -41,24 +42,25 @@ export const ExpenseForm = () => {
           />
           <ErrorMessage name="amount" />
         </div>
+
         <div>
           <label htmlFor="category">Category</label>
           <Field
-            as="select"
             name="category"
+            as="select"
             className="border border-stone-700"
           >
             <option disabled value="">
               Select
             </option>
-            <option value="red">Red</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
+            <option value="sport">Sport</option>
+            <option value="books">Books</option>
           </Field>
           <ErrorMessage name="category" />
         </div>
+
         <button className="bg bg-black text-white p-2" type="submit">
-          Submit
+          Create Income
         </button>
       </Form>
     </Formik>

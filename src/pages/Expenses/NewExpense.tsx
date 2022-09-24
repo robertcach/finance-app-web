@@ -1,4 +1,4 @@
-import { ExpenseForm } from '../../components/App/molecules/ExpenseForm';
+import { ExpenseForm } from '../../components/molecules/ExpenseForm';
 
 const NewExpense = () => {
   return (
