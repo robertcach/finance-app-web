@@ -15,7 +15,6 @@ export const ExpenseForm = () => {
       initialValues={expenseInitialValues}
       validationSchema={expenseSchema}
       onSubmit={(values: Expense) => {
-        console.log(values);
         if (values) {
           const expense: Expense = {
             title: values.title,
