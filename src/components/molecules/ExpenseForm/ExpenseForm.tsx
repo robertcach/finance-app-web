@@ -29,7 +29,12 @@ export const ExpenseForm = () => {
       <Form>
         <div>
           <label htmlFor="title">Title</label>
-          <Field name="title" type="text" className="border border-stone-700" />
+          <Field
+            name="title"
+            type="text"
+            className="border border-stone-700"
+            aria-label="title"
+          />
           <ErrorMessage name="title" />
         </div>
         <div>
@@ -38,6 +43,7 @@ export const ExpenseForm = () => {
             name="amount"
             type="number"
             className="border border-stone-700"
+            aria-label="amount"
           />
           <ErrorMessage name="amount" />
         </div>
@@ -47,6 +53,7 @@ export const ExpenseForm = () => {
             name="category"
             as="select"
             className="border border-stone-700"
+            aria-label="category"
           >
             <option disabled value="">
               Select
