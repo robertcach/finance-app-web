@@ -10,21 +10,23 @@ export const IncomeForm = () => {
   const { incomeSchema } = IncomeValidation();
   const { fetchIncome } = useCreateIncome();
 
+  const handleSubmit = (values: Income) => {
+    if (values) {
+      const income = {
+        title: values.title,
+        amount: values.amount,
+        category: values.category,
+      };
+
+      fetchIncome(income);
+    }
+  };
+
   return (
     <Formik
       initialValues={incomeInitialValues}
       validationSchema={incomeSchema}
-      onSubmit={(values: Income) => {
-        if (values) {
-          const income: Income = {
-            title: values.title,
-            amount: values.amount,
-            category: values.category,
-          };
-
-          fetchIncome(income);
-        }
-      }}
+      onSubmit={(values: Income) => handleSubmit(values)}
     >
       <Form>
         <div>

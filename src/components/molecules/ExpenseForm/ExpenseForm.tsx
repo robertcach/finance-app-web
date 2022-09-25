@@ -10,21 +10,23 @@ export const ExpenseForm = () => {
   const { expenseSchema } = ExpenseValidation();
   const { fetchExpense } = useCreateExpense();
 
+  const handleSubmit = (values: Expense) => {
+    if (values) {
+      const expense: Expense = {
+        title: values.title,
+        amount: values.amount,
+        category: values.category,
+      };
+
+      fetchExpense(expense);
+    }
+  };
+
   return (
     <Formik
       initialValues={expenseInitialValues}
       validationSchema={expenseSchema}
-      onSubmit={(values: Expense) => {
-        if (values) {
-          const expense: Expense = {
-            title: values.title,
-            amount: values.amount,
-            category: values.category,
-          };
-
-          fetchExpense(expense);
-        }
-      }}
+      onSubmit={(values: Expense) => handleSubmit(values)}
     >
       <Form>
         <div>
