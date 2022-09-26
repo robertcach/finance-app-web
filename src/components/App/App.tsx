@@ -4,10 +4,12 @@ import NewExpense from '../../pages/Expenses/NewExpense';
 import NewIncome from '../../pages/Incomes/NewIncome';
 import '../../index.css';
 import Expenses from '../../pages/Expenses/Expenses';
+import { Menu } from '../molecules/Menu/Menu';
 
 export function App() {
   return (
     <main className="app">
+      <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new-expense" element={<NewExpense />} />
